@@ -2,12 +2,18 @@
 // 2) Найти самое длинное слово, вывести его в консоль. 
 // 3) С помощью имеющихся слов создать предложение ровно в 30 символов.
 
-let textEl = document.getElementById('textform');
+
 let btnGoEl = document.querySelector('.go-btn');
 let mainE1 = document.querySelector('.main');
-let words = [];
 
 const textGo = () => {
+  let textEl = document.getElementById('textform');
+  let words = [];
+  if ( mainE1.innerHTML != '') {
+    while (mainE1.firstChild) {
+      mainE1.removeChild(mainE1.firstChild);
+    }
+  }
   let wordNumb = 0;
   words[wordNumb] = '';
   for ( i = 0; i < textEl.value.length; i++) {
@@ -43,14 +49,3 @@ const textGo = () => {
 };
 btnGoEl.addEventListener('click', textGo);
 
-
-// if ( mainE1.innerHTML != '') {
-//   while (mainE1.firstChild) {
-//     mainE1.removeChild(mainE1.firstChild);
-//   }
-// }
-
-
-// Пофиксил ряд багов: 
-// Если нажать GO с пустым textarea выдавался пустой input
-// Если в пустом предложении сделать больше 1го пробела между словами, выдавался пустой input за каждый лишний пробел
